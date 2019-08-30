@@ -23,7 +23,9 @@ export TG_CHAT_ID=<your chat id here"
 ```
 
 
-Then, in command line
+Then, find your bot in Telegram and enter `/start` to enable it  
+
+In command line
 
 ```echoo -m "Hello, how are you?"```. 
 
