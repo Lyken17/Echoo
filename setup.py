@@ -27,7 +27,7 @@ setup(
     author='Ligeng Zhu',
     author_email='lykensyu+github@gmail.com',
     url='https://github.com/Lyken17/Echoo/',
-    description='A tool to count the FLOPs of PyTorch model.',
+    description='Let your program echo to you~',
     long_description=readme,
     long_description_content_type='text/markdown',
     license='MIT',

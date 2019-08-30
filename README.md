@@ -1,10 +1,15 @@
 # Echoo
 
-Let your program echo to you.
+Let your program echo to you~
 
 ## Installation
 
 `pip install echoo`
+
+OR 
+
+`pip install --upgrade git+https://github.com/Lyken17/Echoo.git`
+
 
 ## Usage
 
