@@ -18,8 +18,8 @@ This tool is based on [Telegram](https://telegram.org) -- a secure and advanced 
 First, set your token([@bot_father](https://telegram.me/botfather)) and chat_id([@getidbot](https://telegram.me/getidsbot)) in environment.
 
 ```
-export TG_TOKEN=<your token here"
-export TG_CHAT_ID=<your chat id here"
+export TG_TOKEN=<your token here>"
+export TG_CHAT_ID=<your chat id here>"
 ```
 
 
