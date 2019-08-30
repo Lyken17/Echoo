@@ -19,7 +19,7 @@ def run():
 
     parser.add_argument("-t", "--token", default=None, type=str, help="Token for your bot.")
     parser.add_argument("-id", "--chat_id", default=None, type=str, help="Chat_id of your audience.")
-    parser.add_argument("-m","--msg", default="Are u ok?", type=str, help="Message to send")
+    parser.add_argument("msg", default="Are u ok?", type=str, help="Message to send")
 
     args = parser.parse_args()
     if args.token is None:
