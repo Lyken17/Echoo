@@ -25,9 +25,9 @@ export TG_CHAT_ID=<your chat id here"
 
 Then, find your bot in Telegram and enter `/start` to enable it  
 
-In command line
+In command line (same as `echo` in bash)
 
-```echoo -m "Hello, how are you?"```. 
+```echoo "Hello, how are you?"```. 
 
 ## Verbose
 
