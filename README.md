@@ -34,7 +34,7 @@ In command line (same as `echo` in bash)
 ```bash
 usage: echoo [-h] [-t TOKEN] [-id CHAT_ID] [-m MSG]
 
-Echoo:: A tool let's your program echo.
+Echoo: A tool let's your program echo.
 
 optional arguments:
   -h, --help            show this help message and exit
