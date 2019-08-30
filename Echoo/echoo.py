@@ -15,7 +15,7 @@ def main(token, chat_id, msg):
 
 
 def run():
-    parser = argparse.ArgumentParser(description=r'''Echoo:: A tool let's your program echo.''')
+    parser = argparse.ArgumentParser(description=r'''Echoo: A tool let's your program echo.''')
 
     parser.add_argument("-t", "--token", default=None, type=str, help="Token for your bot.")
     parser.add_argument("-id", "--chat_id", default=None, type=str, help="Chat_id of your audience.")
