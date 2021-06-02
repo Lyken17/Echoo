@@ -51,7 +51,7 @@ class Echoo:
             return res
         return wrapper
 
-def main(token, chat_id, msg="Are u ok", parse_mode="Markdown"):
+def main(token, chat_id, msg="Are u ok", parse_mode="MarkdownV2"):
     bot = telegram.Bot(token=token)
     bot.send_message(chat_id=chat_id, text=escape_fn(msg), parse_mode=parse_mode)
 
