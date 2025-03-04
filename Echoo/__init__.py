@@ -1,1 +1,1 @@
-from .echoo import Echoo
+from .echoo import Echoo, main as echoo_exec

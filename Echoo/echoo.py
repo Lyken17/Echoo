@@ -7,15 +7,19 @@ import argparse
 import codecs
 import telegram
 import asyncio
+from telegram import LinkPreviewOptions
 # from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 def escape_fn(s):
-    return s.replace("_", "\\_") \
-            .replace("*", "\\*") \
-            .replace("[", "\\[") \
-            .replace("`", "\\`") \
-            .replace("<", "\\<") \
-            .replace(">", "\\>")
+    return s.replace("_", r"\_") \
+            .replace("-", r"\-") \
+            .replace(".", r"\.") \
+            .replace("#", r"\#") \
+            .replace("*", r"\*") \
+            .replace("[", r"\[") \
+            .replace("`", r"\`") \
+            .replace("<", r"\<") \
+            .replace(">", r"\>")
 
 class Echoo:
     def __init__(self, token=None, chat_id=None, parse_mode="MarkdownV2"):
@@ -41,11 +45,13 @@ class Echoo:
         if chat_id is None:
             chat_id = self.chat_id
         print(f"===== Echo: {msg} =====")
-        await self.bot.send_message(chat_id=chat_id, text=msg, parse_mode=self.parse_mode if parse_mode is None else parse_mode)    
+        return await self.bot.send_message(chat_id=chat_id, text=msg, parse_mode=parse_mode if parse_mode else self.parse_mode, 
+                                           link_preview_options=LinkPreviewOptions(is_disabled=True)
+                            )
     
     def send_msg(self, msg, chat_id=None, parse_mode=None):
-        asyncio.run(
-            self._send_msg(chat_id=chat_id, msg=msg, parse_mode=self.parse_mode if parse_mode is None else parse_mode)
+        return asyncio.run(
+            self._send_msg(chat_id=chat_id, msg=msg, parse_mode=parse_mode if parse_mode else self.parse_mode)
         )
     
     def __call__(self, function):
@@ -57,11 +63,24 @@ class Echoo:
             return res
         return wrapper
 
-def main(token, chat_id, msg="Are u ok", parse_mode="MarkdownV2", reply_to_message_id=None):
+def main(msg="hello world", token=None, chat_id=None, parse_mode="MarkdownV2", no_escape=False, reply_to_message_id=None):
+    if token is None:
+        try:
+            token = os.environ["TG_TOKEN"]
+        except KeyError:
+            raise KeyError("Neither --token nor TG_TOKEN is set.")
+
+    if chat_id is None:
+        try:
+            chat_id = os.environ["TG_CHAT_ID"]
+        except KeyError:
+            raise KeyError("Neither --chat_id nor TG_CHAT_ID is set.")
+    
     bot = telegram.Bot(token=token)
     msg_info = asyncio.run(
-        bot.send_message(chat_id=chat_id, text=escape_fn(msg), 
-                         parse_mode=parse_mode, reply_to_message_id=reply_to_message_id)
+        bot.send_message(chat_id=chat_id, text=msg if no_escape else escape_fn(msg), 
+                         parse_mode=parse_mode, reply_to_message_id=reply_to_message_id,
+                         link_preview_options=LinkPreviewOptions(is_disabled=True))
     )
     return msg_info.id
 
