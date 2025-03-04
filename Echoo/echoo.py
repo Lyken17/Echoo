@@ -45,7 +45,7 @@ class Echoo:
     
     def send_msg(self, msg, chat_id=None):
         asyncio.run(
-            self._send_msg(chat_id=chat_id, text=msg, parse_mode=self.parse_mode)
+            self._send_msg(chat_id=chat_id, msg=msg, parse_mode=self.parse_mode)
         )
     
     def __call__(self, function):
