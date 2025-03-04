@@ -8,7 +8,7 @@ from setuptools.command.install import install
 
 readme = open('README.md').read()
 
-VERSION = '0.0.2'
+VERSION = '0.0.3'
 
 requirements = [
     'python-telegram-bot',
@@ -17,7 +17,7 @@ requirements = [
 # import subprocess
 # commit_hash = subprocess.check_output("git rev-parse HEAD", shell=True).decode('UTF-8').rstrip()
 # VERSION += "_" + str(int(commit_hash, 16))[:8]
-VERSION += "_" + datetime.datetime.now().strftime('%Y%m%d%H%M')[2:]
+# VERSION += "_" + datetime.datetime.now().strftime('%Y%m%d%H%M')[2:]
 # print(VERSION)
 
 setup(
