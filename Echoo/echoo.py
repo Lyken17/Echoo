@@ -37,15 +37,15 @@ class Echoo:
         # self.parse_mode = "Markdown"
         self.parse_mode = parse_mode
     
-    async def _send_msg(self, msg, chat_id=None):
+    async def _send_msg(self, msg, chat_id=None, parse_mode=None):
         if chat_id is None:
             chat_id = self.chat_id
         print(f"===== Echo: {msg} =====")
-        await self.bot.send_message(chat_id=chat_id, text=msg, parse_mode=self.parse_mode)    
+        await self.bot.send_message(chat_id=chat_id, text=msg, parse_mode=self.parse_mode if parse_mode is None else parse_mode)    
     
-    def send_msg(self, msg, chat_id=None):
+    def send_msg(self, msg, chat_id=None, parse_mode=None):
         asyncio.run(
-            self._send_msg(chat_id=chat_id, msg=msg, parse_mode=self.parse_mode)
+            self._send_msg(chat_id=chat_id, msg=msg, parse_mode=self.parse_mode if parse_mode is None else parse_mode)
         )
     
     def __call__(self, function):
