@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Echoo"
-version = "0.0.4"
+version = "0.0.4post1"
 description = "Let your program echo to you~"
 readme = "README.md"
 authors = [
