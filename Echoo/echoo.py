@@ -67,7 +67,6 @@ def main(msg="hello world", token=None, chat_id=None, parse_mode="MarkdownV2", n
     assert token is not None and chat_id is not None, "Neither --token nor TG_TOKEN is set. Neither --chat_id nor TG_CHAT_ID is set."
     
     bot = telegram.Bot(token=token)
-    print(msg if no_escape else escape_fn(msg)); input()
     msg_info = asyncio.run(
         bot.send_message(chat_id=chat_id, text=msg if no_escape else escape_fn(msg), 
                          parse_mode=parse_mode, reply_to_message_id=reply_to_message_id,
