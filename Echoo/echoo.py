@@ -39,7 +39,6 @@ class Echoo:
             except KeyError:
                 raise KeyError("Neither --chat_id nor TG_CHAT_ID is set.")
         self.bot = telegram.Bot(token=self.token)
-        # self.parse_mode = "Markdown"
         self.parse_mode = parse_mode
     
     async def _send_msg(self, msg, chat_id=None, parse_mode=None):
@@ -94,12 +93,12 @@ def run():
     chat_id = os.environ.get("TG_CHAT_ID", None)
     if args.msg and (token is None or chat_id is None):
         warnings.warn("Echoo to telegram will not work. Neither --token nor TG_TOKEN is set. Neither --chat_id nor TG_CHAT_ID is set.")
-        print(f"\033[32m[Echoo]\033[0m:" + f"\033[1m{args.msg}\033[0m")
+        print(f"[Echoo]" + f"{args.msg}")
         return 0
-    
+
     parser.add_argument("-t", "--token", default=None, type=str, help="Token for your bot.")
     parser.add_argument("-id", "--chat_id", default=None, type=str, help="Chat_id of your audience.")
-    parser.add_argument("--parse-mode", default="Markdown", type=str, help="Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message")
+    parser.add_argument("--parse-mode", default="MarkdownV2", type=str, help="Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message")
     parser.add_argument("-rid", "--reply-to-id", default=None, type=int, help="Message ID to reply to.")
     parser.add_argument("--return-id", action="store_true")
 
