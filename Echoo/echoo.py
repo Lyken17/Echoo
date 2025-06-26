@@ -9,6 +9,7 @@ import telegram
 import asyncio
 from telegram import LinkPreviewOptions
 # from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import warnings
 
 def escape_fn(s):
     return s.replace("_", r"\_") \
@@ -97,21 +98,21 @@ def run():
 
     args = parser.parse_args()
     if args.token is None:
-        try:
-            args.token = os.environ["TG_TOKEN"]
-        except KeyError:
-            raise KeyError("Neither --token nor TG_TOKEN is set.")
+        args.token = os.environ.get("TG_TOKEN", None)
 
     if args.chat_id is None:
-        try:
-            args.chat_id = os.environ["TG_CHAT_ID"]
-        except KeyError:
-            raise KeyError("Neither --chat_id nor TG_CHAT_ID is set.")
+        args.chat_id = os.environ.get("TG_CHAT_ID", None)
 
-    id = main(token=args.token, chat_id=args.chat_id, msg=args.msg, 
+    if args.token is None or args.chat_id is None:
+        warnings.warn("Echoo to telegram will not work. Neither --token nor TG_TOKEN is set. Neither --chat_id nor TG_CHAT_ID is set.")
+        print(f"\033[32m[Echoo]\033[0m:" + f"\033[1m{args.msg}\033[0m")
+        return
+    
+    tid = main(token=args.token, chat_id=args.chat_id, msg=args.msg, 
               parse_mode=args.parse_mode, reply_to_message_id=args.reply_to_id)
+    
     if args.return_id:
-        print(id)
+        print(tid)
 
 
 if __name__ == '__main__':

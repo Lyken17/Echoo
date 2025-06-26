@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Echoo"
+version = "0.0.3"
+description = "Let your program echo to you~"
+readme = "README.md"
+authors = [
+    { name = "Ligeng Zhu", email = "lykensyu+github@gmail.com" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.6"
+dependencies = [
+    "python-telegram-bot"
+]
+classifiers = [
+  "Programming Language :: Python :: 3"
+]
+
+[project.urls]
+Homepage = "https://github.com/Lyken17/Echoo/"
+
+[tool.setuptools]
+zip-safe = true
+
+[tool.setuptools.packages.find]
+exclude = ["*test*"]
+
+[project.scripts]
+echoo = "Echoo.echoo:run"
+
